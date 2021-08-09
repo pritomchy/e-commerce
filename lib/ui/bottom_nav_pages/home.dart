@@ -147,7 +147,7 @@ class _HomeState extends State<Home> {
                                 AspectRatio(
                                     aspectRatio: 2,
                                     child: Container(
-                                        color: Colors.white,
+                                        color: Colors.white70,
                                         child: Image.network(
                                           _products[index]["product-img"][0],
                                         ))),
