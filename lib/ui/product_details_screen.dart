@@ -63,6 +63,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 )),
           ),
         ),
+        title: Center(child: Text("Product Details", style: TextStyle(color: Colors.black),)),
         actions: [
           StreamBuilder(
             stream: FirebaseFirestore.instance
@@ -99,6 +100,9 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
         ],
       ),
+
+
+
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.only(left: 12, right: 12, top: 10),
@@ -128,13 +132,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                         setState(() {});
                       })),
             ),
-            Text(
-              widget._product['product-name'],
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            Padding(
+              padding: const EdgeInsets.only(left: 10,right: 10,bottom: 15,top: 15),
+              child: Text(
+                widget._product['product-name'],
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              ),
             ),
             Text(widget._product['product-description']),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Text(
               "\$ ${widget._product['product-price'].toString()}",
@@ -145,16 +152,37 @@ class _ProductDetailsState extends State<ProductDetails> {
             SizedBox(
               width: 1.sw,
               height: 56.h,
-              child: ElevatedButton(
-                onPressed: () => addToCart(),
-                child: Text(
-                  "Add to cart",
-                  style: TextStyle(color: Colors.white, fontSize: 18.sp),
-                ),
-                style: ElevatedButton.styleFrom(
-                  primary: AppColors.deep_orange,
-                  elevation: 3,
-                ),
+
+
+              child: Row(
+                children:<Widget> [
+                  ElevatedButton(
+                    onPressed: () => addToCart(),
+                    child: Text(
+                      "Add to cart",
+                      style: TextStyle(color: Colors.white, fontSize: 18.sp),
+                    ),
+
+                    style: ElevatedButton.styleFrom(
+                      primary: AppColors.deep_orange,
+                      elevation: 3,
+
+                    ),
+                  ),
+
+                  ElevatedButton(
+                    onPressed: () => addToCart(),
+                    child: Text(
+                      "Buy Now",
+                      style: TextStyle(color: Colors.white, fontSize: 18.sp),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: AppColors.deep_orange,
+                      elevation: 3,
+                    ),
+                  ),
+
+                ],
               ),
             ),
           ],

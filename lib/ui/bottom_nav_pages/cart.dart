@@ -26,13 +26,11 @@ class _CartState extends State<Cart> {
 
               var data = snapshot.data;
 
-              if(data==null){
-                return Center(child: CircularProgressIndicator(),);
-              }
+
             }
 
             return ListView.builder(
-                itemCount: snapshot.data!.docs.length,
+                itemCount: snapshot.data==null?0:snapshot.data!.docs.length,
                 itemBuilder: (_, index) {
                   DocumentSnapshot _documentSnapshot =
                   snapshot.data!.docs[index];
