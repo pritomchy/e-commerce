@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/const/AppColors.dart';
+
 import 'package:flutter/material.dart';
 
 import 'bottom_nav_pages/cart.dart';
@@ -14,9 +15,11 @@ class BottomNavController extends StatefulWidget {
 class _BottomNavControllerState extends State<BottomNavController> {
   final _pages = [
     Home(),
+
     Favourite(),
     Cart(),
     Profile(),
+
   ];
   var _currentIndex = 0;
 
