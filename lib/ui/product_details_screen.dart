@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/const/AppColors.dart';
+import 'package:ecommerce_app/ui/checkout_process.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -108,12 +109,12 @@ class _ProductDetailsState extends State<ProductDetails> {
       ),
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.only(left: 12, right: 12, top: 10),
+        padding: const EdgeInsets.only(left: 12, right: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: 3.5,
+              aspectRatio: 1.5,
               child: CarouselSlider(
                   items: widget._product['product-img']
                       .map<Widget>((item) => Padding(
@@ -173,7 +174,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                     width: 10,
                   ),
                   ElevatedButton(
-                    onPressed: () => addToCart(),
+                    onPressed: () {
+                      var route =
+                          MaterialPageRoute(builder: (context) => CheckOut());
+                      Navigator.push(context, route);
+                    },
                     child: Text(
                       "Buy Now",
                       style: TextStyle(color: Colors.white, fontSize: 18.sp),
