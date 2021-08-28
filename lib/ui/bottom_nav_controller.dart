@@ -26,16 +26,7 @@ class _BottomNavControllerState extends State<BottomNavController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(
-          "E-Commerce",
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-      ),
+
       bottomNavigationBar: BottomNavigationBar(
         elevation: 5,
         selectedItemColor: AppColors.deep_orange,

@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/const/AppColors.dart';
 import 'package:ecommerce_app/ui/checkout_process.dart';
+import 'package:ecommerce_app/ui/confirmation_screen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductDetails extends StatefulWidget {
   var _product;
 
-  ProductDetails(this._product);
+  ProductDetails(this._product, {cartProductName});
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
@@ -113,6 +115,9 @@ class _ProductDetailsState extends State<ProductDetails> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 20,
+            ),
             AspectRatio(
               aspectRatio: 1.5,
               child: CarouselSlider(
@@ -176,7 +181,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ElevatedButton(
                     onPressed: () {
                       var route =
-                          MaterialPageRoute(builder: (context) => CheckOut());
+                          MaterialPageRoute(builder: (context) => Checkout());
                       Navigator.push(context, route);
                     },
                     child: Text(

@@ -1,186 +1,254 @@
-
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce_app/const/AppColors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ecommerce_app/provider.dart';
+import 'package:provider/provider.dart';
+import 'package:ecommerce_app/ui/confirmation_screen.dart';
 
-import 'bottom_nav_controller.dart';
+// enum  Payment { bKash, cashOnDelivery }
 
-
-class CheckOut
-    extends StatefulWidget {
+class Checkout extends StatefulWidget {
   @override
-  _CheckOutState createState() => _CheckOutState();
+  _CheckoutState createState() => _CheckoutState();
 }
 
-class _CheckOutState extends State<CheckOut> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _addressController = TextEditingController();
+class _CheckoutState extends State<Checkout> {
+  // Payment selectePayment;
 
-  TextEditingController _ageController = TextEditingController();
+  Color activeColor = Colors.pink;
+  Color disableColor = Colors.grey;
 
+  Future<void> deleteProductsOnCart()async{
+    FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
-  Future<void> _selectDateFromPicker(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime(DateTime.now().year - 20),
-      firstDate: DateTime(DateTime.now().year - 30),
-      lastDate: DateTime(DateTime.now().year),
-    );
-
-  }
-
-  sendUserDataToDB()async{
-
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    var  currentUser = _auth.currentUser;
-
-    CollectionReference _collectionRef = FirebaseFirestore.instance.collection("check-out-data");
-    return _collectionRef.doc(currentUser!.email).set({
-      "name":_nameController.text,
-      "phone":_phoneController.text,
-      "address":_addressController.text,
-
-      "age":_ageController.text,
-    }).then((value) => Navigator.push(context, MaterialPageRoute(builder: (_)=>BottomNavController()))).catchError((error)=>print("something is wrong. $error"));
+    return _fireStore.collection('users-form-data')
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .collection('users-form-data')
+        .get().then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        doc.reference.delete();
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20.w),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 20.h,
-                ),
-                Text(
-                  "Check out process.",
-                  style:
-                  TextStyle(fontSize: 22.sp, color: AppColors.deep_orange),
-                ),
-                Text(
-                  "We will not share your information with anyone.",
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: Color(0xFFBBBBBB),
-                  ),
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  controller: _nameController,
-                  decoration: InputDecoration(hintText: "enter your name"),
-                ),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: _phoneController,
-                  decoration:
-                  InputDecoration(hintText: "enter your phone number"),
-                ),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  controller: _addressController,
-                  decoration: InputDecoration(hintText: "enter your current adress"),
-                ),
+    final providerData = Provider.of<Total>(context);
 
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: _ageController,
-                  decoration: InputDecoration(hintText: "enter your age"),
+    return Scaffold(
+      appBar: AppBar(
+          elevation: 0.2,
+          backgroundColor: Colors.pink,
+          title: Text("Checkout")),
+      body: Column(
+        children: [
+          Card(
+            child: Column(
+              children: [
+                Text(
+                  'Payment Method',
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
-                  height: 50.h,
-                ),
-                // elevated button
-                SizedBox(
-                  width: 1.sw,
-                  height: 56.h,
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
                   child: Row(
-                    children: <Widget>[
-                      ElevatedButton(
-                        onPressed: (){
-                          sendUserDataToDB();
-                        },
-                        child: Text(
-                          "Process",
-                          style: TextStyle(color: Colors.white, fontSize: 18.sp),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.deep_orange,
-                          elevation: 3,
+                    children: [
+                      Expanded(
+                        child: MaterialButton(
+                          onPressed: () {
+                            // setState(() {
+                            //   selectePayment = Payment.bKash;
+                            // });
+                          },
+                          // color: selectePayment == Payment.bKash
+                          //     ? activeColor
+                          //     : disableColor,
+                          child: Text('bKash (017********)'),
                         ),
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 5.0,
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          var route =
-                          Notify();
-                        },
-                        child: Text(
-                          "Confirm",
-                          style: TextStyle(color: Colors.white, fontSize: 18.sp),
+                      Expanded(
+                        child: MaterialButton(
+                          onPressed: () {
+                            // setState(() {
+                            //   selectePayment = Payment.cashOnDelivery;
+                            // });
+                          },
+                          // color: selectePayment == Payment.cashOnDelivery
+                          //     ? activeColor
+                          //     : disableColor,
+                          child: Text('Cash On Delivery'),
                         ),
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.deep_orange,
-                          elevation: 3,
-                        ),
-                      ),
+                      )
                     ],
                   ),
-                ),
+                )
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
+          SizedBox(height: 20.0,),
+          Expanded(
+              child: Card(
+                child: Column(
+                  children: [
+                    Text(
+                      'Order Info',
+                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 4.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Subtotal',style: TextStyle(color: Colors.black38),),
+                          Text('\$' + providerData.tot.toString(),style: TextStyle(color: Colors.black38),),
+                        ],
+                      ),
+                    ),
 
-class LocalNotify extends StatefulWidget{
-  @override
-  _LocalNotifyState createState() => _LocalNotifyState();
-}
-class _LocalNotifyState extends State<LocalNotify>{
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20.0, 4.0, 20.0, 4.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Shipping Cost',style: TextStyle(color: Colors.black38),),
+                          Text('+\$10.0',style: TextStyle(color: Colors.black38),),
+                        ],
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20.0, 4.0, 20.0, 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Total',style: TextStyle(color: Colors.black38),),
+                          Text('\$' + (providerData.tot+10.0).toString(),style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, fontSize: 18.0),),
+                        ],
+                      ),
+                    ),
+
+                  ],
+                ),
+              )),
+        ],
+      ),
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        child: MaterialButton(
           onPressed: () {
-
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text(
+                      'CHECKOOUT',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.pink,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    content: Text('Do you want to confirm your order?'),
+                    actions: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: MaterialButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(context);
+                              },
+                              child: Text(
+                                'NO',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              color: Colors.pink,
+                            ),
+                          ),
+                          SizedBox(width: 10.0,),
+                          Expanded(
+                            child: MaterialButton(
+                              onPressed: () {
+                                setState(() {
+                                  providerData.ResetTotal();
+                                  deleteProductsOnCart();
+                                });
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Confirm()));
+                              },
+                              child: Text(
+                                'YES',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              color: Colors.pink,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  );
+                });
           },
-          child: Icon(Icons.call),
-
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(
+              "CHECKOUT (\$" + (providerData.tot+10).toString() + ")",
+              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+            ),
+          ),
+          color: Colors.pink,
         ),
       ),
     );
   }
 }
-void Notify() async{
-  String timezom = await AwesomeNotifications().getLocalTimeZoneIdentifier();
-  await AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: 1,
-        channelKey: 'key1',
-        title: 'Checkout Process Done',
-        body: 'your Shopping Is complete',
 
-      ),
-    schedule: NotificationInterval(interval: 5, timeZone: timezom,repeats: false),
-  );
-}
+
+
+
+
+
+
+// class LocalNotify extends StatefulWidget{
+//   @override
+//   _LocalNotifyState createState() => _LocalNotifyState();
+// }
+// class _LocalNotifyState extends State<LocalNotify>{
+//   @override
+//   Widget build(BuildContext context){
+//     return Scaffold(
+//       body: Center(
+//         child: ElevatedButton(
+//           onPressed: () {
+//
+//           },
+//           child: Icon(Icons.call),
+//
+//         ),
+//       ),
+//     );
+//   }
+// }
+// void Notify() async{
+//   String timezom = await AwesomeNotifications().getLocalTimeZoneIdentifier();
+//   await AwesomeNotifications().createNotification(
+//       content: NotificationContent(
+//         id: 1,
+//         channelKey: 'key1',
+//         title: 'Checkout Process Done',
+//         body: 'your Shopping Is complete',
+//
+//       ),
+//     schedule: NotificationInterval(interval: 5, timeZone: timezom,repeats: false),
+//   );
+// }

@@ -3,6 +3,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:ecommerce_app/const/AppColors.dart';
+import 'package:ecommerce_app/ui/bottom_nav_pages/profile.dart';
+import 'package:ecommerce_app/ui/horizontal_listview.dart';
+
+import 'package:ecommerce_app/ui/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -62,12 +66,111 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Boi Pori",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 4.0,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              size: 25,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => SearchScreen()),
+              );
+
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.person,
+              size: 25,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Profile()),
+              );
+            },
+          ),
+        ],
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
+
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: <Color>[
+                    Color.fromRGBO(4, 248, 207, 1),
+                    Color.fromRGBO(251, 243, 100, 1),
+                  ])),
+              child: Container(
+                child: Column(
+                  children: [
+                    Material(
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                      elevation: 10,
+                      child: Image.asset(
+                        "assets/images/bookshop.jpg",
+                        width: 100,
+                        height: 100,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('Boi Pori')
+                  ],
+                ),
+              ),
+            ),
+            CustomListTile(
+              icon: Icons.person,
+              textTitle: "Group Members",
+            ),
+
+            CustomListTile(
+              icon: Icons.star,
+              textTitle: "Pritom Chowdhury",
+            ),
+            CustomListTile(
+              icon: Icons.engineering,
+              textTitle: "Supervised By",
+            ),
+            CustomListTile(
+              icon: Icons.assistant_photo,
+              textTitle: "Md. Jamir Ahmed",
+            ),
+            Divider(),
+            ListTile(
+              title: Text('0.0.1'),
+            )
+          ],
+        ),
+      ),
       body: SafeArea(
           child: Container(
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 20.w, right: 20.w),
+                  padding: EdgeInsets.only(left: 20.w, right: 20.w,top: 10.w),
                   child: TextFormField(
                     readOnly: true,
                     decoration: InputDecoration(
@@ -103,7 +206,7 @@ class _HomeState extends State<Home> {
                       ))
                           .toList(),
                       options: CarouselOptions(
-                          autoPlay: false,
+                          autoPlay: true,
                           enlargeCenterPage: true,
                           viewportFraction: 0.8,
                           enlargeStrategy: CenterPageEnlargeStrategy.height,
@@ -114,7 +217,7 @@ class _HomeState extends State<Home> {
                           })),
                 ),
                 SizedBox(
-                  height: 10.h,
+                  height: 2.h,
                 ),
                 DotsIndicator(
                   dotsCount:
@@ -128,6 +231,11 @@ class _HomeState extends State<Home> {
                     size: Size(6, 6),
                   ),
                 ),
+
+                new Padding(padding: const EdgeInsets.all(8.0),
+
+                ),
+                HorizontalList(),
                 SizedBox(
                   height: 15.h,
                 ),
@@ -163,6 +271,27 @@ class _HomeState extends State<Home> {
               ],
             ),
           )),
+    );
+  }
+}
+class CustomListTile extends StatelessWidget {
+  IconData? icon;
+  String? textTitle;
+
+  CustomListTile({this.icon, this.textTitle});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Align(
+        alignment: FractionalOffset.bottomCenter,
+        child: Column(
+          children: <Widget>[
+            Divider(),
+            ListTile(leading: Icon(icon), title: Text(textTitle!)),
+          ],
+        ),
+      ),
     );
   }
 }
