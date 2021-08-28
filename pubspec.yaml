@@ -61,6 +61,8 @@ flutter:
     - assets/images/cong.jpg
     - assets/images/category/
     - assets/images/pritom.JPG
+    - assets/images/logo.jpg
+    - assets/images/drawer.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

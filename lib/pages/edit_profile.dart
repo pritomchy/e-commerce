@@ -1,4 +1,6 @@
 import 'package:ecommerce_app/pages/settings.dart';
+import 'package:ecommerce_app/ui/bottom_nav_controller.dart';
+
 import 'package:flutter/material.dart';
 
 
@@ -31,7 +33,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Icons.arrow_back,
             color: Colors.green,
           ),
-          onPressed: () {},
+          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomNavController()));}
+        ),
+        title: Center(
+          child: Text(
+            "Buyer Profile",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ),
         actions: [
           IconButton(

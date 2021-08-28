@@ -37,7 +37,7 @@ class _CartState extends State<Cart> {
               if(!flage){
                 int localPrice = 0;
                 data!.docs.forEach((element) {
-                  print(int.tryParse(element["price"].toString()).runtimeType);
+                  // print(int.tryParse(element["price"].toString()).runtimeType);
                   price = price + int.parse(element["price"].toString());
 
                 });
@@ -49,7 +49,7 @@ class _CartState extends State<Cart> {
             return Column(
               children: [
                 SizedBox(
-                  height: 500,
+                  height: 400,
                   child: ListView.builder(
                       itemCount: snapshot.data==null?0:snapshot.data!.docs.length,
                       itemBuilder: (_, index) {
@@ -78,6 +78,9 @@ class _CartState extends State<Cart> {
                                     .collection("items")
                                     .doc(_documentSnapshot.id)
                                     .delete();
+                                setState(() {
+                                  price = price - int.parse(_documentSnapshot['price'].toString());
+                                });
                               },
                             ),
                           ),
@@ -93,7 +96,7 @@ class _CartState extends State<Cart> {
                   ),),
                 ),
                 RaisedButton(
-                  onPressed: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Checkout()));},
+                  onPressed: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Checkout(price: price,)));},
                   color: Colors.cyan,
                   padding: EdgeInsets.symmetric(vertical:15.0,horizontal: 25.0),
                   child: Text(

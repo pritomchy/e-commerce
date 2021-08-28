@@ -161,38 +161,25 @@ class _ProductDetailsState extends State<ProductDetails> {
             Divider(),
             SizedBox(
               width: 1.sw,
-              height: 56.h,
+              height: 116.h,
               child: Row(
                 children: <Widget>[
-                  ElevatedButton(
-                    onPressed: () => addToCart(),
-                    child: Text(
-                      "Add to cart",
-                      style: TextStyle(color: Colors.white, fontSize: 18.sp),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: AppColors.deep_orange,
+                  Expanded(
+                    child: MaterialButton(
+                      onPressed: () => addToCart(),
+                      child: Text(
+                        "Add to cart",
+                        style: TextStyle(color: Colors.white, fontSize: 18.sp),
+                      ),
+                      color: AppColors.deep_orange,
                       elevation: 3,
+                      // style: ElevatedButton.styleFrom(
+                      //   primary: AppColors.deep_orange,
+                      //   elevation: 3,
+                      // ),
                     ),
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      var route =
-                          MaterialPageRoute(builder: (context) => Checkout());
-                      Navigator.push(context, route);
-                    },
-                    child: Text(
-                      "Buy Now",
-                      style: TextStyle(color: Colors.white, fontSize: 18.sp),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: AppColors.deep_orange,
-                      elevation: 3,
-                    ),
-                  ),
+
                 ],
               ),
             ),

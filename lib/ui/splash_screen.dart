@@ -11,7 +11,7 @@ class SplashScreen extends StatefulWidget {
 }
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
-    Timer(Duration(seconds: 3),()=>Navigator.push(context, CupertinoPageRoute(builder: (_)=>LoginScreen())));
+    Timer(Duration(seconds: 5),()=>Navigator.push(context, CupertinoPageRoute(builder: (_)=>LoginScreen())));
     super.initState();
   }
   @override
@@ -24,15 +24,17 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Image(image: AssetImage("assets/images/logo.jpg")),
+              SizedBox(
+                height: 30,
+              ),
               Text(
-                "Bazar.Com",
+                "Delivering Happiness",
                 style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 44.sp),
+                    fontFamily: "Satisfy", fontSize: 20, color: Colors.white70,fontWeight: FontWeight.bold),
               ),
               SizedBox(
-                height: 20.h,
+                height: 20,
               ),
               CircularProgressIndicator(
                 color: Colors.white,

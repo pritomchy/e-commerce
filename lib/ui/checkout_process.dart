@@ -7,9 +7,11 @@ import 'package:ecommerce_app/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app/ui/confirmation_screen.dart';
 
-// enum  Payment { bKash, cashOnDelivery }
+enum  Payment { bKash, cashOnDelivery }
 
 class Checkout extends StatefulWidget {
+  Checkout({required this.price});
+  int price;
   @override
   _CheckoutState createState() => _CheckoutState();
 }
@@ -105,7 +107,7 @@ class _CheckoutState extends State<Checkout> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Subtotal',style: TextStyle(color: Colors.black38),),
-                          Text('\$' + providerData.tot.toString(),style: TextStyle(color: Colors.black38),),
+                          Text('\$' + widget.price.toString(),style: TextStyle(color: Colors.black38),),
                         ],
                       ),
                     ),
@@ -127,7 +129,7 @@ class _CheckoutState extends State<Checkout> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Total',style: TextStyle(color: Colors.black38),),
-                          Text('\$' + (providerData.tot+10.0).toString(),style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, fontSize: 18.0),),
+                          Text('\$' + (widget.price+10.0).toString(),style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, fontSize: 18.0),),
                         ],
                       ),
                     ),
@@ -202,7 +204,7 @@ class _CheckoutState extends State<Checkout> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Text(
-              "CHECKOUT (\$" + (providerData.tot+10).toString() + ")",
+              "CHECKOUT (\$" + (widget.price+10.0).toString() + ")",
               style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
             ),
           ),

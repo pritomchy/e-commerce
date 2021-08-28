@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Boi Pori",
+          "Bazar.Com",
           style: TextStyle(
             color: Colors.black,
             fontSize: 20,
@@ -127,7 +127,7 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.all(Radius.circular(50)),
                       elevation: 10,
                       child: Image.asset(
-                        "assets/images/bookshop.jpg",
+                        "assets/images/drawer.jpg",
                         width: 100,
                         height: 100,
                       ),
@@ -135,7 +135,7 @@ class _HomeState extends State<Home> {
                     SizedBox(
                       height: 10,
                     ),
-                    Text('Boi Pori')
+                    Text('Bazar.com')
                   ],
                 ),
               ),
@@ -170,21 +170,23 @@ class _HomeState extends State<Home> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.w, right: 20.w,top: 10.w),
-                  child: TextFormField(
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(0)),
-                          borderSide: BorderSide(color: Colors.blue)),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(0)),
-                          borderSide: BorderSide(color: Colors.grey)),
-                      hintText: "Search products here",
-                      hintStyle: TextStyle(fontSize: 15.sp),
+                  child: Center(
+                    child: TextFormField(
+                      readOnly: true,
+                      decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            borderSide: BorderSide(color: Colors.blue)),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide(color: Colors.grey)),
+                        hintText: "Search products here",
+                        hintStyle: TextStyle(fontSize: 15.sp,),
+                      ),
+                      onTap: () => Navigator.push(context,
+                          CupertinoPageRoute(builder: (_) => SearchScreen())),
                     ),
-                    onTap: () => Navigator.push(context,
-                        CupertinoPageRoute(builder: (_) => SearchScreen())),
                   ),
                 ),
                 SizedBox(

@@ -15,7 +15,6 @@ class BottomNavController extends StatefulWidget {
 class _BottomNavControllerState extends State<BottomNavController> {
   final _pages = [
     Home(),
-
     Favourite(),
     Cart(),
     Profile(),

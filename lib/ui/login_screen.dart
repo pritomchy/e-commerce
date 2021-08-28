@@ -238,16 +238,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 20.h,
+                          height: 40.h,
                         ),
                         Wrap(
                           children: [
                             Text(
                               "Don't have an account?",
                               style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xFFBBBBBB),
+                                color: Colors.red,
                               ),
                             ),
                             GestureDetector(

@@ -17,6 +17,7 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController _emailController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
 
@@ -176,7 +177,7 @@ print(e);
                             ),
                             Expanded(
                               child: TextField(
-                                controller: _emailController,
+                                controller: _nameController,
                                 decoration: InputDecoration(
                                   hintText: "Enter your User Name",
                                   hintStyle: TextStyle(
@@ -348,7 +349,7 @@ print(e);
                           ),
                         ),
                         SizedBox(
-                          height: 20.h,
+                          height: 40.h,
                         ),
                         Wrap(
                           children: [
@@ -357,7 +358,7 @@ print(e);
                               style: TextStyle(
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xFFBBBBBB),
+                                color: Colors.redAccent,
                               ),
                             ),
                             GestureDetector(

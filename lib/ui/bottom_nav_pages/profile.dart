@@ -1,5 +1,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce_app/pages/edit_profile.dart';
+import 'package:ecommerce_app/ui/bottom_nav_controller.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +29,7 @@ class _ProfileState extends State<Profile> {
         TextFormField(
           controller: _ageController = TextEditingController(text: data['age']),
         ),
-        ElevatedButton(onPressed: ()=>updateData(), child: Text("Update"))
+        ElevatedButton(onPressed: () => EditProfilePage(), child: Text("Update"))
       ],
     );
   }
@@ -46,6 +49,44 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.green,
+          ),
+          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomNavController()));},
+        ),
+        title: Text(
+          "Buyer",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 4.0,
+        actions: [
+
+          IconButton(
+            icon: Icon(
+              Icons.person,
+              size: 25,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => EditProfilePage()),
+              );
+            },
+          ),
+        ],
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
       body: SafeArea(child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: StreamBuilder(

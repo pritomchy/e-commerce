@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       stream: FirebaseFirestore.instance
                           .collection("products")
                           .where("product-name",
-                          isEqualTo: inputText)
+                          isGreaterThanOrEqualTo: inputText)
                           .snapshots(),
                       builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) {
