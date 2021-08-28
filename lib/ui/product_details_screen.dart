@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/const/AppColors.dart';
+import 'package:ecommerce_app/ui/bottom_nav_controller.dart';
+import 'package:ecommerce_app/ui/bottom_nav_pages/cart.dart';
 import 'package:ecommerce_app/ui/checkout_process.dart';
 import 'package:ecommerce_app/ui/confirmation_screen.dart';
 
@@ -164,20 +166,37 @@ class _ProductDetailsState extends State<ProductDetails> {
               height: 116.h,
               child: Row(
                 children: <Widget>[
-                  Expanded(
-                    child: MaterialButton(
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
                       onPressed: () => addToCart(),
                       child: Text(
                         "Add to cart",
                         style: TextStyle(color: Colors.white, fontSize: 18.sp),
                       ),
-                      color: AppColors.deep_orange,
-                      elevation: 3,
-                      // style: ElevatedButton.styleFrom(
-                      //   primary: AppColors.deep_orange,
-                      //   elevation: 3,
-                      // ),
+                      style: ElevatedButton.styleFrom(
+                        primary: AppColors.deep_orange,
+                        elevation: 3,
+                      ),
                     ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: ()  {Navigator.push(context, MaterialPageRoute(builder: (context)=>Cart()));},
+                      child: Text(
+                        "Buy Now",
+                        style: TextStyle(color: Colors.white, fontSize: 18.sp),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: AppColors.deep_orange,
+                        elevation: 3,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
                   ),
 
                 ],

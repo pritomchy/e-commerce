@@ -60,6 +60,8 @@ class _CartState extends State<Cart> {
                           child: ListTile(
                             leading:
 
+
+
                                Text(_documentSnapshot['name'],),
 
                             title: Text(
