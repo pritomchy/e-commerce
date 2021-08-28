@@ -105,7 +105,7 @@ print(e);
                               fontSize: 22.sp, color: AppColors.deep_orange),
                         ),
                         Text(
-                          "Glad to see you back my buddy.",
+                          "Glad to see you back.",
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: Color(0xFFBBBBBB),
@@ -137,12 +137,53 @@ print(e);
                               child: TextField(
                                 controller: _emailController,
                                 decoration: InputDecoration(
-                                  hintText: "pritomchowdhury@gmail.com",
+                                  hintText: "Enter Your Email",
                                   hintStyle: TextStyle(
                                     fontSize: 14.sp,
                                     color: Color(0xFF414041),
                                   ),
-                                  labelText: 'EMAIL',
+                                  labelText: 'Email',
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: AppColors.deep_orange,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 48.h,
+                              width: 41.w,
+                              decoration: BoxDecoration(
+                                  color: AppColors.deep_orange,
+                                  borderRadius: BorderRadius.circular(12.r)),
+                              child: Center(
+                                child: Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                  size: 20.w,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: TextField(
+                                controller: _emailController,
+                                decoration: InputDecoration(
+                                  hintText: "Enter your User Name",
+                                  hintStyle: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Color(0xFF414041),
+                                  ),
+                                  labelText: 'User Name',
                                   labelStyle: TextStyle(
                                     fontSize: 15.sp,
                                     color: AppColors.deep_orange,
@@ -219,6 +260,72 @@ print(e);
                         ),
 
                         SizedBox(
+                          height: 10.h,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 48.h,
+                              width: 41.w,
+                              decoration: BoxDecoration(
+                                  color: AppColors.deep_orange,
+                                  borderRadius: BorderRadius.circular(12.r)),
+                              child: Center(
+                                child: Icon(
+                                  Icons.lock_outline,
+                                  color: Colors.white,
+                                  size: 20.w,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: TextField(
+                                controller: _passwordController,
+                                obscureText: _obscureText,
+                                decoration: InputDecoration(
+                                  hintText: "password must be 6 character",
+                                  hintStyle: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Color(0xFF414041),
+                                  ),
+                                  labelText: 'Confirm Password',
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: AppColors.deep_orange,
+                                  ),
+                                  suffixIcon: _obscureText == true
+                                      ? IconButton(
+                                      onPressed: (
+
+                                          ) {
+                                        setState(() {
+                                          _obscureText = false;
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.remove_red_eye,
+                                        size: 20.w,
+                                      ))
+                                      : IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          _obscureText = true;
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.visibility_off,
+                                        size: 20.w,
+                                      )),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SizedBox(
                           height: 50.h,
                         ),
                         // elevated button
@@ -248,7 +355,7 @@ print(e);
                             Text(
                               "Don't have an account?",
                               style: TextStyle(
-                                fontSize: 13.sp,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w600,
                                 color: Color(0xFFBBBBBB),
                               ),
@@ -257,8 +364,8 @@ print(e);
                               child: Text(
                                 " Sign In",
                                 style: TextStyle(
-                                  fontSize: 13.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.bold,
                                   color: AppColors.deep_orange,
                                 ),
                               ),

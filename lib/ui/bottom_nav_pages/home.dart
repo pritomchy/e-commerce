@@ -3,10 +3,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:ecommerce_app/const/AppColors.dart';
+import 'package:ecommerce_app/pages/edit_profile.dart';
 import 'package:ecommerce_app/ui/bottom_nav_pages/profile.dart';
 import 'package:ecommerce_app/ui/horizontal_listview.dart';
-
-import 'package:ecommerce_app/ui/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -104,7 +103,7 @@ class _HomeState extends State<Home> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Profile()),
+                    builder: (context) => EditProfilePage()),
               );
             },
           ),

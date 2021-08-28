@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontSize: 22.sp, color: AppColors.deep_orange),
                         ),
                         Text(
-                          "Glad to see you back my buddy.",
+                          "Glad to see you back .",
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: Color(0xFFBBBBBB),
@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: TextField(
                                 controller: _emailController,
                                 decoration: InputDecoration(
-                                  hintText: "thed9954@gmail.com",
+                                  hintText: "Enter your E-mail",
                                   hintStyle: TextStyle(
                                     fontSize: 14.sp,
                                     color: Color(0xFF414041),
@@ -245,7 +245,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(
                               "Don't have an account?",
                               style: TextStyle(
-                                fontSize: 13.sp,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w600,
                                 color: Color(0xFFBBBBBB),
                               ),
@@ -254,8 +254,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 " Sign Up",
                                 style: TextStyle(
-                                  fontSize: 13.sp,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.bold,
                                   color: AppColors.deep_orange,
                                 ),
                               ),
