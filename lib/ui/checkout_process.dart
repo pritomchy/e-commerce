@@ -1,4 +1,4 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/ui/bottom_nav_pages/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -212,36 +212,3 @@ class _CheckoutState extends State<Checkout> {
 
 
 
-// class LocalNotify extends StatefulWidget{
-//   @override
-//   _LocalNotifyState createState() => _LocalNotifyState();
-// }
-// class _LocalNotifyState extends State<LocalNotify>{
-//   @override
-//   Widget build(BuildContext context){
-//     return Scaffold(
-//       body: Center(
-//         child: ElevatedButton(
-//           onPressed: () {
-//
-//           },
-//           child: Icon(Icons.call),
-//
-//         ),
-//       ),
-//     );
-//   }
-// }
-// void Notify() async{
-//   String timezom = await AwesomeNotifications().getLocalTimeZoneIdentifier();
-//   await AwesomeNotifications().createNotification(
-//       content: NotificationContent(
-//         id: 1,
-//         channelKey: 'key1',
-//         title: 'Checkout Process Done',
-//         body: 'your Shopping Is complete',
-//
-//       ),
-//     schedule: NotificationInterval(interval: 5, timeZone: timezom,repeats: false),
-//   );
-// }
