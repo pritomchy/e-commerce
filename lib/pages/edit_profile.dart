@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/pages/settings.dart';
+
 import 'package:ecommerce_app/ui/bottom_nav_controller.dart';
 
 import 'package:flutter/material.dart';
@@ -45,18 +45,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: Colors.green,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => SettingsPage()));
-            },
-          ),
-        ],
+
       ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -144,7 +133,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             color: Colors.black)),
                   ),
                   RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomNavController()));
+                    },
                     color: Colors.green,
                     padding: EdgeInsets.symmetric(horizontal: 50),
                     elevation: 2,

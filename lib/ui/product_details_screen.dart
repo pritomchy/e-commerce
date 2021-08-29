@@ -199,9 +199,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                     width: 10,
                   ),
 
+
                 ],
               ),
             ),
+
+
           ],
         ),
       )),
