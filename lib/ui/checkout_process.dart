@@ -53,7 +53,7 @@ class _CheckoutState extends State<Checkout> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 360,
+                      height: 260,
                     ),
                     Text(
                       'Order Detail',

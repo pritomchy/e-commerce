@@ -31,7 +31,7 @@ class _ProfileState extends State<Profile> {
           controller: _addressController = TextEditingController(text: data['address']),
         ),
         ElevatedButton(onPressed: () => updateData(), child: Text("Update")),
-        // ElevatedButton(onPressed: () => Checkout(), child: Text("Update")),
+
       ],
     );
   }
