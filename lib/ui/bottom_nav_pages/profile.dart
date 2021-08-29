@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/pages/edit_profile.dart';
 import 'package:ecommerce_app/ui/bottom_nav_controller.dart';
+import 'package:ecommerce_app/ui/checkout_process.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   TextEditingController ?_nameController;
   TextEditingController ?_phoneController;
-  TextEditingController ?_ageController;
+  TextEditingController ?_addressController;
 
 
   setDataToTextField(data){
@@ -27,9 +28,10 @@ class _ProfileState extends State<Profile> {
           controller: _phoneController = TextEditingController(text: data['phone']),
         ),
         TextFormField(
-          controller: _ageController = TextEditingController(text: data['age']),
+          controller: _addressController = TextEditingController(text: data['address']),
         ),
-        ElevatedButton(onPressed: () => EditProfilePage(), child: Text("Update"))
+        ElevatedButton(onPressed: () => updateData(), child: Text("Update")),
+        // ElevatedButton(onPressed: () => Checkout(), child: Text("Update")),
       ],
     );
   }
@@ -40,7 +42,7 @@ class _ProfileState extends State<Profile> {
         {
           "name":_nameController!.text,
           "phone":_phoneController!.text,
-          "age":_ageController!.text,
+          "age":_addressController!.text,
         }
     ).then((value) => print("Updated Successfully"));
   }
@@ -58,7 +60,7 @@ class _ProfileState extends State<Profile> {
           onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomNavController()));},
         ),
         title: Text(
-          "Buyer",
+          "Cash On Delivery System",
           style: TextStyle(
             color: Colors.black,
             fontSize: 20,

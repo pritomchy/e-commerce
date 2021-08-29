@@ -20,6 +20,7 @@ class _UserFormState extends State<UserForm> {
   TextEditingController _dobController = TextEditingController();
   TextEditingController _genderController = TextEditingController();
   TextEditingController _ageController = TextEditingController();
+  TextEditingController _addressController = TextEditingController();
   List<String> gender = ["Male", "Female", "Other"];
 
   Future<void> _selectDateFromPicker(BuildContext context) async {
@@ -47,6 +48,7 @@ class _UserFormState extends State<UserForm> {
       "dob":_dobController.text,
       "gender":_genderController.text,
       "age":_ageController.text,
+      "address":_addressController.text,
     }).then((value) => Navigator.push(context, MaterialPageRoute(builder: (_)=>BottomNavController()))).catchError((error)=>print("something is wrong. $error"));
   }
 
@@ -83,6 +85,11 @@ class _UserFormState extends State<UserForm> {
                   keyboardType: TextInputType.text,
                   controller: _nameController,
                   decoration: InputDecoration(hintText: "enter your name"),
+                ),
+                TextField(
+                  keyboardType: TextInputType.text,
+                  controller: _addressController,
+                  decoration: InputDecoration(hintText: "enter your address"),
                 ),
                 TextField(
                   keyboardType: TextInputType.number,

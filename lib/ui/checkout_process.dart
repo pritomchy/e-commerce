@@ -1,5 +1,6 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce_app/ui/bottom_nav_pages/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,62 +44,19 @@ class _CheckoutState extends State<Checkout> {
       appBar: AppBar(
           elevation: 0.2,
           backgroundColor: Colors.pink,
-          title: Text("Checkout")),
+          title: Center(child: Text("Checkout"))),
+
       body: Column(
         children: [
-          Card(
-            child: Column(
-              children: [
-                Text(
-                  'Payment Method',
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: MaterialButton(
-                          onPressed: () {
-                            // setState(() {
-                            //   selectePayment = Payment.bKash;
-                            // });
-                          },
-                          // color: selectePayment == Payment.bKash
-                          //     ? activeColor
-                          //     : disableColor,
-                          child: Text('bKash (017********)'),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 5.0,
-                      ),
-                      Expanded(
-                        child: MaterialButton(
-                          onPressed: () {
-                            // setState(() {
-                            //   selectePayment = Payment.cashOnDelivery;
-                            // });
-                          },
-                          // color: selectePayment == Payment.cashOnDelivery
-                          //     ? activeColor
-                          //     : disableColor,
-                          child: Text('Cash On Delivery'),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          SizedBox(height: 20.0,),
           Expanded(
               child: Card(
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 360,
+                    ),
                     Text(
-                      'Order Info',
+                      'Order Detail',
                       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                     Padding(
@@ -137,6 +95,34 @@ class _CheckoutState extends State<Checkout> {
                   ],
                 ),
               )),
+          SizedBox(height: 20.0,),
+          Card(
+            child: Column(
+              children: [
+                Text(
+                  'Payment Method',
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    children: [
+
+                      Expanded(
+                        child: MaterialButton(
+                          onPressed: () {
+                            {Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));}
+                          },
+
+                          child: Text('Cash On Delivery'),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: Container(
@@ -155,7 +141,7 @@ class _CheckoutState extends State<Checkout> {
                           fontWeight: FontWeight.bold
                       ),
                     ),
-                    content: Text('Do you want to confirm your order?'),
+                    content: Text('confirm your order?'),
                     actions: [
                       Row(
                         children: [
