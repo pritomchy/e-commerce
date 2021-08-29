@@ -7,9 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app/ui/confirmation_screen.dart';
-
-enum  Payment { bKash, cashOnDelivery }
-
 class Checkout extends StatefulWidget {
   Checkout({required this.price});
   int price;
@@ -36,6 +33,7 @@ class _CheckoutState extends State<Checkout> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     final providerData = Provider.of<Total>(context);
@@ -46,7 +44,9 @@ class _CheckoutState extends State<Checkout> {
           backgroundColor: Colors.pink,
           title: Center(child: Text("Checkout"))),
 
-      body: Column(
+
+      body:
+      Column(
         children: [
           Expanded(
               child: Card(
@@ -96,6 +96,7 @@ class _CheckoutState extends State<Checkout> {
                 ),
               )),
           SizedBox(height: 20.0,),
+
           Card(
             child: Column(
               children: [
@@ -121,10 +122,13 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 )
               ],
+
             ),
           ),
         ],
+
       ),
+
       bottomNavigationBar: Container(
         color: Colors.white,
         child: MaterialButton(
@@ -163,6 +167,7 @@ class _CheckoutState extends State<Checkout> {
                           Expanded(
                             child: MaterialButton(
                               onPressed: () {
+
                                 setState(() {
                                   providerData.ResetTotal();
                                   deleteProductsOnCart();

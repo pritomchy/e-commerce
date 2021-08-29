@@ -2,7 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/pages/edit_profile.dart';
 import 'package:ecommerce_app/ui/bottom_nav_controller.dart';
-import 'package:ecommerce_app/ui/checkout_process.dart';
+
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,10 +27,18 @@ class _ProfileState extends State<Profile> {
         TextFormField(
           controller: _phoneController = TextEditingController(text: data['phone']),
         ),
-        TextFormField(
-          controller: _addressController = TextEditingController(text: data['address']),
+      TextFormField(
+        controller: _addressController= TextEditingController(text: data['address']),
+
+      ),
+        SizedBox(
+          height: 20,
         ),
-        ElevatedButton(onPressed: () => updateData(), child: Text("Update")),
+        Column(
+          children: [
+            ElevatedButton(onPressed: () => updateData(), child: Text("Done")),
+          ],
+        ),
 
       ],
     );
@@ -42,7 +50,8 @@ class _ProfileState extends State<Profile> {
         {
           "name":_nameController!.text,
           "phone":_phoneController!.text,
-          "age":_addressController!.text,
+
+          "address":_addressController!.text,
         }
     ).then((value) => print("Updated Successfully"));
   }
@@ -91,6 +100,7 @@ class _ProfileState extends State<Profile> {
       ),
       body: SafeArea(child: Padding(
         padding: const EdgeInsets.all(20.0),
+
         child: StreamBuilder(
           stream: FirebaseFirestore.instance.collection("users-form-data").doc(FirebaseAuth.instance.currentUser!.email).snapshots(),
           builder: (BuildContext context, AsyncSnapshot snapshot){

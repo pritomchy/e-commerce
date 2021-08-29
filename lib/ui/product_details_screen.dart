@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/const/AppColors.dart';
-import 'package:ecommerce_app/ui/bottom_nav_controller.dart';
+
 import 'package:ecommerce_app/ui/bottom_nav_pages/cart.dart';
-import 'package:ecommerce_app/ui/checkout_process.dart';
-import 'package:ecommerce_app/ui/confirmation_screen.dart';
+
+
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

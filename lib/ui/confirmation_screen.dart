@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:ecommerce_app/ui/bottom_nav_pages/home.dart';
 import 'package:ecommerce_app/ui/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -56,6 +57,8 @@ class _ConfirmState extends State<Confirm> {
           padding: const EdgeInsets.all(20.0),
           child: MaterialButton(
             onPressed: () {
+              Notify();
+
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -74,4 +77,39 @@ class _ConfirmState extends State<Confirm> {
       ),
     );
   }
+}
+
+class LocalNotify extends StatefulWidget{
+  @override
+  _LocalNotifyState createState() => _LocalNotifyState();
+}
+class _LocalNotifyState extends State<LocalNotify>{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+
+
+          },
+          child: Icon(Icons.call),
+
+        ),
+      ),
+    );
+  }
+}
+void Notify() async{
+  String timezom = await AwesomeNotifications().getLocalTimeZoneIdentifier();
+  await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 1,
+        channelKey: 'key1',
+        title: 'Bazar.com',
+        body: 'your Order is Complete',
+
+      ),
+    schedule: NotificationInterval(interval: 3, timeZone: timezom,repeats: false),
+  );
 }
