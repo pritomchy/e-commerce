@@ -55,7 +55,27 @@ class _UserFormState extends State<UserForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_new_outlined,
+            size: 25,
+            color: Colors.black,
+          ),
+          onPressed: () {},
+        ),
+        title: Text(
+          'User Detail',
+          style: TextStyle(
+
+              color: Colors.black,
+              fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+      ),
       body: SafeArea(
+
         child: Padding(
           padding: EdgeInsets.all(20.w),
           child: SingleChildScrollView(
@@ -66,73 +86,94 @@ class _UserFormState extends State<UserForm> {
                 SizedBox(
                   height: 20.h,
                 ),
-                Text(
-                  "Submit the form to continue.",
-                  style:
-                  TextStyle(fontSize: 22.sp, color: AppColors.deep_orange),
+                Center(
+                  child: Text(
+                    "Submit the form to continue.",
+                    style:
+                    TextStyle(fontSize: 22.sp, color:Colors.black),
+                  ),
                 ),
-                Text(
-                  "We will not share your information with anyone.",
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: Color(0xFFBBBBBB),
+                SizedBox(
+                  height: 5,
+                ),
+                Center(
+                  child: Text(
+                    "We will not share your information with anyone.",
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 15.h,
                 ),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  controller: _nameController,
-                  decoration: InputDecoration(hintText: "enter your name"),
-                ),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  controller: _addressController,
-                  decoration: InputDecoration(hintText: "enter your address"),
-                ),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: _phoneController,
-                  decoration:
-                  InputDecoration(hintText: "enter your phone number"),
-                ),
-                TextField(
-                  controller: _dobController,
-                  readOnly: true,
-                  decoration: InputDecoration(
-                    hintText: "date of birth",
-                    suffixIcon: IconButton(
-                      onPressed: () => _selectDateFromPicker(context),
-                      icon: Icon(Icons.calendar_today_outlined),
-                    ),
+
+                LabelForProfile(labelForProfile: '🧑‍ Name'),
+                Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Flexible(
+                        child: TextField(
+                          controller: _nameController,
+                          decoration: InputDecoration(hintText: "Enter Your Name"),
+                          enabled: true,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                TextField(
-                  controller: _genderController,
-                  readOnly: true,
-                  decoration: InputDecoration(
-                    hintText: "choose your gender",
-                    prefixIcon: DropdownButton<String>(
-                      items: gender.map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: new Text(value),
-                          onTap: () {
-                            setState(() {
-                              _genderController.text = value;
-                            });
-                          },
-                        );
-                      }).toList(),
-                      onChanged: (_) {},
-                    ),
+
+                LabelForProfile(labelForProfile: '📱 Mobile Number'),
+                Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Flexible(
+                        child: TextField(
+                          controller: _phoneController,
+                          decoration: InputDecoration(hintText: "Enter Mobile Number"),
+                          enabled: true,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: _ageController,
-                  decoration: InputDecoration(hintText: "enter your age"),
+
+              LabelForProfile(labelForProfile: '🗼 Contract Address'),
+          Padding(
+            padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Flexible(
+                  child: TextField(
+                    controller: _addressController,
+                    decoration: InputDecoration(hintText: "Enter Contract Address"),
+                    enabled: true,
+                  ),
+                ),
+              ],
+            ),
+          ),
+                LabelForProfile(labelForProfile: '🧑‍ Age'),
+                Padding(
+                  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 2.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Flexible(
+                        child: TextField(
+                          controller: _ageController,
+                          decoration: InputDecoration(hintText: "Enter Your Age"),
+                          enabled: true,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 50.h,
@@ -147,7 +188,7 @@ class _UserFormState extends State<UserForm> {
                     },
                     child: Text(
                       "Continue",
-                      style: TextStyle(color: Colors.white, fontSize: 18.sp),
+                      style: TextStyle(color: Colors.white, fontSize: 24.sp),
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: AppColors.deep_orange,
@@ -159,6 +200,34 @@ class _UserFormState extends State<UserForm> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class LabelForProfile extends StatelessWidget {
+  final String labelForProfile;
+
+  LabelForProfile({required this.labelForProfile});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                labelForProfile,
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

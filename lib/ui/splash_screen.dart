@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'package:ecommerce_app/const/AppColors.dart';
+import 'package:ecommerce_app/ui/login_n_registrationscreen_selectscreen.dart';
 import 'package:ecommerce_app/ui/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,13 +12,13 @@ class SplashScreen extends StatefulWidget {
 }
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
-    Timer(Duration(seconds: 5),()=>Navigator.push(context, CupertinoPageRoute(builder: (_)=>LoginScreen())));
+    Timer(Duration(seconds: 5),()=>Navigator.push(context, CupertinoPageRoute(builder: (_)=>LoginRegistrationSelectionPage())));
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.deep_orange,
+      backgroundColor: Colors.deepOrangeAccent,
       body: SafeArea(
         child: Center(
           child: Column(

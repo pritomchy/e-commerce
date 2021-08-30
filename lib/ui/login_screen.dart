@@ -254,7 +254,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 " Sign Up",
                                 style: TextStyle(
-                                  fontSize: 22.sp,
+                                  fontSize: 19.sp,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.deep_orange,
                                 ),
