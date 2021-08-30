@@ -129,6 +129,7 @@ class _CartState extends State<Cart> {
                         MaterialPageRoute(
                             builder: (context) => Checkout(
                                   price: price,
+
                                 )));
                   },
                   color: Colors.cyan,

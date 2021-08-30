@@ -52,6 +52,21 @@ class _ProductDetailsState extends State<ProductDetails> {
       "images": widget._product["product-img"],
     }).then((value) => print("Added to favourite"));
   }
+  Future addToCheckout() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentUser = _auth.currentUser;
+    CollectionReference _collectionRef =
+    FirebaseFirestore.instance.collection("users-cart-items");
+    return _collectionRef
+        .doc(currentUser!.email)
+        .collection("items")
+        .doc()
+        .set({
+      "name": widget._product["product-name"],
+      "price": widget._product["product-price"],
+      "images": widget._product["product-img"],
+    }).then((value) => print("Added to cart"));
+  }
 
   @override
   Widget build(BuildContext context) {
