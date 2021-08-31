@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:ecommerce_app/ui/bottom_nav_controller.dart';
 import 'package:ecommerce_app/ui/bottom_nav_pages/home.dart';
 import 'package:ecommerce_app/ui/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -62,7 +63,7 @@ class _ConfirmState extends State<Confirm> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => SplashScreen()));
+                      builder: (context) => BottomNavController()));
             },
             child: Padding(
               padding: const EdgeInsets.all(20.0),

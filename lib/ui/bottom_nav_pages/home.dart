@@ -6,6 +6,7 @@ import 'package:ecommerce_app/const/AppColors.dart';
 import 'package:ecommerce_app/pages/edit_profile.dart';
 import 'package:ecommerce_app/ui/bottom_nav_pages/profile.dart';
 import 'package:ecommerce_app/ui/horizontal_listview.dart';
+import 'package:ecommerce_app/ui/login_n_registrationscreen_selectscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -157,9 +158,15 @@ class _HomeState extends State<Home> {
               icon: Icons.assistant_photo,
               textTitle: "Md. Jamir Ahmed",
             ),
-            Divider(),
-            ListTile(
-              title: Text('0.0.1'),
+            Divider(), ListTile(
+              leading: InkWell(
+                  onTap: () {
+
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => LoginRegistrationSelectionPage()),
+                            (route) => false);
+                  },
+                  child: Text('LOG OUT')),
             )
           ],
         ),

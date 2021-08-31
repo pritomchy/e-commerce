@@ -41,7 +41,7 @@ class _ProfileState extends State<Profile> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            {Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomNavController()));}
           },
         ),
         title: Text(

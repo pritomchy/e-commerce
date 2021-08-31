@@ -20,22 +20,22 @@ class Checkout extends StatefulWidget {
 class _CheckoutState extends State<Checkout> {
   // Payment selectePayment; vai
 
-  List<String> _productImages = [];
-  var _firestoreInstance = FirebaseFirestore.instance;
-
-  fetchProductImages() async {
-    QuerySnapshot qn = await _firestoreInstance.collection("products").get();
-    setState(() {
-      for (int i = 0; i < qn.docs.length; i++) {
-        _productImages.add(
-          qn.docs[i]["product-img"],
-        );
-        print(qn.docs[i]["img-path"]);
-      }
-    });
-
-    return qn.docs;
-  }
+  // List<String> _productImages = [];
+  // var _firestoreInstance = FirebaseFirestore.instance;
+  //
+  // fetchProductImages() async {
+  //   QuerySnapshot qn = await _firestoreInstance.collection("products").get();
+  //   setState(() {
+  //     for (int i = 0; i < qn.docs.length; i++) {
+  //       _productImages.add(
+  //         qn.docs[i]["product-img"],
+  //       );
+  //       print(qn.docs[i]["img-path"]);
+  //     }
+  //   });
+  //
+  //   return qn.docs;
+  // }
 
   Color activeColor = Colors.pink;
   Color disableColor = Colors.grey;
@@ -55,12 +55,12 @@ class _CheckoutState extends State<Checkout> {
     });
   }
 
-  @override
-  void initState() {
-    fetchProductImages();
-
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   fetchProductImages();
+  //
+  //   super.initState();
+  // }
 
   bool flage = false;
   List<DocumentSnapshot<Object?>>? _snapshot;
